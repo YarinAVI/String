@@ -34,6 +34,12 @@ String StringCopyCs(String S1,const char *S2);
 
 int StringCmpCs(String S1,const char *S2);
 
+/**
+ * @brief returns pointer to first character.
+ * 
+ * @param S the string.
+ * @return char* ptr.
+ */
 char * StringGetIt(String S);
 /**
  * @brief compares two strings by using strcmp.
@@ -58,6 +64,14 @@ void StringPrint(String S,FILE *StreamOut);
  * @param StreamOut the stream. 
  */
 void StringPrintLn(String S,FILE *StreamOut);
+/**
+ * @brief returns hash of S.
+ * 
+ * @param S the string
+ * @return size_t the hash.
+ */
+size_t StringHash(String S);
+
 #ifdef __cplusplus
 }
 #endif

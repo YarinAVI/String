@@ -62,3 +62,15 @@ char * StringGetIt(String S) {
     }
     return NULL;
 }
+size_t StringHash(String S) {
+    size_t ret = 0;
+    const char *it;
+    if(S && S->buffer) {
+        it = S->buffer;
+        while(*it) {
+            ret += (*it % 13 ) + 1;
+            it++;
+        }
+    }
+    return ret; 
+}
