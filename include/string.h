@@ -34,6 +34,7 @@ String StringCopyCs(String S1,const char *S2);
 
 int StringCmpCs(String S1,const char *S2);
 
+char * StringGetIt(String S);
 /**
  * @brief compares two strings by using strcmp.
  * 

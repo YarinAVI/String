@@ -56,3 +56,9 @@ String StringCopy(String S1, String S2) {
         strcpy(S1->buffer,S2->buffer);
     }
 }
+char * StringGetIt(String S) {
+    if(S && S->buffer) {
+        return S->buffer;
+    }
+    return NULL;
+}
