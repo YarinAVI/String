@@ -27,7 +27,13 @@ String newString(const char* clone);
  * @param S the string.
  */
 void   StringDestroy(String S);
-
+/**
+ * @brief copies S2 to S1.
+ * 
+ * @param S1 dest string.
+ * @param S2 source string.
+ * @return String returns S1 if copy was succesfull, NULL otherwise.
+ */
 String StringCopy(String S1, String S2);
 
 String StringCopyCs(String S1,const char *S2);
@@ -72,6 +78,13 @@ void StringPrintLn(String S,FILE *StreamOut);
  */
 size_t StringHash(String S);
 
+/**
+ * @brief returns the current string length.
+ * 
+ * @param S the string.
+ * @return size_t length.
+ */
+size_t StringLen(String S);
 #ifdef __cplusplus
 }
 #endif

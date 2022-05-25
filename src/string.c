@@ -1,9 +1,15 @@
 #include "../include/string.h"
 #include <string.h>
 #include <stdlib.h>
+/**
+ * @brief string
+ * @param buff_len the total length of the buffer.
+ * @param str_len  the string len in the buffer.
+ */
 struct string {
     char * buffer;
-    size_t buff_len; /* not the string len, but maximum string len -1 */
+    size_t buff_len;
+    size_t str_len; 
 };
 
 String newString(const char* clone) {
@@ -12,6 +18,7 @@ String newString(const char* clone) {
         return NULL;
     ret = calloc(1,sizeof(struct string));
     ret->buff_len = strlen(clone) + 1;
+    ret->str_len  = ret->buff_len-1;
     ret->buffer = calloc(ret->buff_len,sizeof(char));
     if(!ret->buffer) {
         free(ret);
@@ -20,7 +27,7 @@ String newString(const char* clone) {
     strcpy(ret->buffer,clone);
     return ret;
 }
-void   StringDestroy(String S) {
+void StringDestroy(String S) {
     free(S->buffer);
     free(S);
 }
@@ -45,7 +52,7 @@ String StringCopy(String S1, String S2) {
     if(S1 && S2) {
         /* need S1 buff len to be > S2 strlen */
         str_len = strlen(S2->buffer);
-        if(S1->buffer <= str_len) {
+        if(S1->buff_len <= str_len) {
             temp = realloc(S1->buffer,(str_len+1)*sizeof(char));
             if(!temp)
                 return NULL;
@@ -53,8 +60,10 @@ String StringCopy(String S1, String S2) {
             S1->buff_len = str_len+1;
             S1->buffer = temp;
         }
+        S1->str_len = str_len;
         strcpy(S1->buffer,S2->buffer);
     }
+    return  S1;
 }
 char * StringGetIt(String S) {
     if(S && S->buffer) {
@@ -68,9 +77,15 @@ size_t StringHash(String S) {
     if(S && S->buffer) {
         it = S->buffer;
         while(*it) {
-            ret += (*it % 13 ) + 1;
+            ret += ((*it) % 12 ) + 1;
             it++;
         }
     }
     return ret; 
+}
+size_t StringLen(String S) {
+    if(S) {
+        return S->str_len;
+    }
+    return 0;
 }
