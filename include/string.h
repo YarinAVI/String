@@ -85,6 +85,15 @@ size_t StringHash(String S);
  * @return size_t length.
  */
 size_t StringLen(String S);
+
+/**
+ * @brief concats src to dest.
+ * 
+ * @param dest dest string.
+ * @param src source string.
+ * @return String dest string if sucessful, NULL otherwise.
+ */
+String StringCat(String dest,String src);
 #ifdef __cplusplus
 }
 #endif

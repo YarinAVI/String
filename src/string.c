@@ -89,3 +89,20 @@ size_t StringLen(String S) {
     }
     return 0;
 }
+
+String StringCat(String dest,String src) {
+    char *temp;
+    if(!dest || !src)
+        return NULL;
+    if(dest->buff_len - dest->str_len -1 < src->str_len )  {
+        dest->buff_len += src->str_len;
+        temp = realloc(dest->buffer,dest->buff_len);
+        if(!temp) {
+            dest->buff_len -= src->str_len;
+            return NULL;
+        }
+        dest->buffer = temp;
+    }
+    strcat(&dest->buffer[dest->str_len],src->buffer);
+return dest;
+}
