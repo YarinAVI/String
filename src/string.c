@@ -103,7 +103,7 @@ String StringCat(String dest,String src) {
         }
         dest->buffer = temp;
     }
-    strcat(&dest->buffer[dest->str_len],src->buffer);
+    strcat(&dest->buffer[dest->str_len-1],src->buffer);
 return dest;
 }
 
@@ -122,6 +122,6 @@ String StringCatCs(String dest,const char * src) {
         }
         dest->buffer = temp;
     }
-    strcat(&dest->buffer[dest->str_len],src);
+    strcat(&dest->buffer[dest->str_len-1],src);
 return dest;
 }
