@@ -96,14 +96,17 @@ String StringCat(String dest,String src) {
         return NULL;
     if(dest->buff_len - dest->str_len -1 < src->str_len )  {
         dest->buff_len += src->str_len;
+        
         temp = realloc(dest->buffer,dest->buff_len);
         if(!temp) {
             dest->buff_len -= src->str_len;
+            dest->str_len  -= src->str_len;
             return NULL;
         }
         dest->buffer = temp;
     }
     strcat(&dest->buffer[dest->str_len-1],src->buffer);
+    dest->str_len  += src->str_len;
 return dest;
 }
 
@@ -115,13 +118,16 @@ String StringCatCs(String dest,const char * src) {
     src_len = strlen(src);
     if(dest->buff_len - dest->str_len -1 < src_len )  {
         dest->buff_len += src_len;
+        
         temp = realloc(dest->buffer,dest->buff_len);
         if(!temp) {
             dest->buff_len -= src_len;
+            dest->str_len  -= src_len;
             return NULL;
         }
         dest->buffer = temp;
     }
     strcat(&dest->buffer[dest->str_len-1],src);
+    dest->str_len  += src_len;
 return dest;
 }
