@@ -94,6 +94,16 @@ size_t StringLen(String S);
  * @return String dest string if sucessful, NULL otherwise.
  */
 String StringCat(String dest,String src);
+
+/**
+ * @brief concats src to dest
+ * 
+ * @param dest dest string.
+ * @param src source string ( const char *).
+ * @return String dest string if sucessful, NULL otherwise. 
+ */
+String StringCatCs(String dest,const char * src);
+
 #ifdef __cplusplus
 }
 #endif

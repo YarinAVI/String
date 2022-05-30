@@ -106,3 +106,22 @@ String StringCat(String dest,String src) {
     strcat(&dest->buffer[dest->str_len],src->buffer);
 return dest;
 }
+
+String StringCatCs(String dest,const char * src) {
+    size_t src_len;
+    char *temp;
+    if(!dest || !src)
+        return NULL;
+    src_len = strlen(src);
+    if(dest->buff_len - dest->str_len -1 < src_len )  {
+        dest->buff_len += src_len;
+        temp = realloc(dest->buffer,dest->buff_len);
+        if(!temp) {
+            dest->buff_len -= src_len;
+            return NULL;
+        }
+        dest->buffer = temp;
+    }
+    strcat(&dest->buffer[dest->str_len],src);
+return dest;
+}
